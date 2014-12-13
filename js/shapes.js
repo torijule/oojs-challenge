@@ -1,15 +1,79 @@
 /*
-    shapes.js
-    This is where your code goes
-
-    Write the code to create rectangle and circle classes that extend the
-    Shape class defined in shape.js. Then create a couple of other subclasses that
-    render different sorts of shapes using the HTML <canvas> functions.
-    http://www.w3schools.com/tags/ref_canvas.asp
-
-    You can use either the classical or the prototypal style to create your subclasses
-
-    After you've written the code for the sublcasses, call either registerPrototypalShape()
-    or registerClassicalShape() to register your new shapes with the application. See the
-    app.js file for info on these functions.
+    Victoria Wellington
  */
+"use strict";
+
+Rectangle.prototype = new Shape();
+registerClassicalShape('Rectangle', Rectangle);
+
+Circle.prototype = new Shape();
+registerClassicalShape('Circle', Circle);
+
+Text.prototype = new Shape();
+registerClassicalShape('Text', Text);
+
+Tea.prototype = new Shape();
+registerClassicalShape('Tea', Tea);
+
+
+function Rectangle (left, top, width, height, stylesMap) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    this.height = height;
+    this.stylesMap = stylesMap;
+
+    this.renderShape = function(canvas) {
+        return canvas.fillRect(this.left, this.top, this.width, this.height, this.stylesMap);
+    };
+}
+
+function Circle (left, top, width, height, stylesMap) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    this.height = height;
+    this.stylesMap = stylesMap;
+
+    this.renderShape = function(canvas) {
+        canvas.beginPath();
+        canvas.arc(this.left, this.top, this.height, 0, 2*Math.PI, this.stylesMap);
+        return canvas.fill();
+    };
+}
+
+Text.prototype = new Shape();
+registerClassicalShape('Text', Text);
+
+
+function Text (left, top, width, height, stylesMap) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    this.height = height;
+    this.stylesMap = stylesMap;
+
+    this.renderShape = function(canvas) {
+        canvas.font="30px Georgia";
+        canvas.fillText(":D",this.left,this.top);
+
+        canvas.font="30px Verdana";
+    };
+}
+
+
+
+function Tea (left, top, width, height, stylesMap) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    this.height = height;
+    this.stylesMap = stylesMap;
+     var img = new Image();
+    img.src = './img/teapot.jpg';
+
+    this.renderShape = function(canvas) {
+        canvas.drawImage(img, this.left, this.top);
+
+    };
+}

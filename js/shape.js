@@ -7,6 +7,9 @@
     use createShape() to create or subclass a new shape in the prototypal style
 */
 
+
+
+
 function Shape(left, top, width, height, stylesMap) {
     this.left = left;
     this.top = top;
