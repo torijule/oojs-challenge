@@ -42,9 +42,6 @@ function Circle (left, top, width, height, stylesMap) {
     };
 }
 
-Text.prototype = new Shape();
-registerClassicalShape('Text', Text);
-
 
 function Text (left, top, width, height, stylesMap) {
     this.left = left;
